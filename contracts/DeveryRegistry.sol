@@ -339,4 +339,16 @@ contract DeveryRegistry is Admined {
         brandAccount = product.brandAccount;
         appAccount = brand.appAccount;
     }
+
+   function check2(address item) public constant returns (address productAccount, address brandAccount, address appAccount) {
+        bytes32 hash = keccak256(item);
+        productAccount = markings[hash];
+        // require(productAccount != address(0));
+        Product storage product = products[productAccount];
+        // require(product.brandAccount != address(0));
+        Brand storage brand = brands[product.brandAccount];
+        // require(brand.brandAccount != address(0));
+        brandAccount = product.brandAccount;
+        appAccount = brand.appAccount;
+    }
 }
